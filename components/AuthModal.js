@@ -8,6 +8,7 @@ import { Formik, Form } from 'formik';
 import { Dialog, Transition } from '@headlessui/react';
 import { SparklesIcon, MailOpenIcon, XIcon } from '@heroicons/react/outline';
 import Input from './Input';
+import { signIn } from 'next-auth/react';
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string()
@@ -74,6 +75,13 @@ const AuthModal = ({ show = false, onClose = () => null }) => {
   const signInWithGoogle = () => {
     // TODO: Perform Google auth
   };
+
+  const signInWithGithub = () => {
+    signIn('github', {
+      // redirect: false,
+      callbackUrl: location.href,
+    })
+  }
 
   const closeModal = () => {
     if (typeof onClose === 'function') {
@@ -175,7 +183,7 @@ const AuthModal = ({ show = false, onClose = () => null }) => {
 
                   <div className="mt-10">
                     {/* Sign with Google */}
-                    <button
+                    {/* <button
                       disabled={disabled}
                       onClick={() => signInWithGoogle()}
                       className="h-[46px] w-full mx-auto border rounded-md p-2 flex justify-center items-center space-x-2 text-gray-500 hover:text-gray-600 hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-opacity-25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-500 disabled:hover:bg-transparent disabled:hover:border-gray-200 transition-colors"
@@ -187,10 +195,25 @@ const AuthModal = ({ show = false, onClose = () => null }) => {
                         height={32}
                       />
                       <span>Sign {showSignIn ? 'in' : 'up'} with Google</span>
+                    </button> */}
+
+                    {/* Sign with Github */}
+                    <button
+                      disabled={disabled}
+                      onClick={() => signInWithGithub()}
+                      className="h-[46px] w-full mx-auto border rounded-md p-2 flex justify-center items-center space-x-2 text-gray-500 hover:text-gray-600 hover:border-gray-400 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-opacity-25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:text-gray-500 disabled:hover:bg-transparent disabled:hover:border-gray-200 transition-colors"
+                    >
+                      {/* <Image
+                        src="/google.svg"
+                        alt="Google"
+                        width={32}
+                        height={32}
+                      /> */}
+                      <span>Sign {showSignIn ? 'in' : 'up'} with Github</span>
                     </button>
 
                     {/* Sign with email */}
-                    <Formik
+                    {/* <Formik
                       initialValues={{ email: '' }}
                       validationSchema={SignInSchema}
                       validateOnBlur={false}
@@ -258,7 +281,7 @@ const AuthModal = ({ show = false, onClose = () => null }) => {
                           />
                         </Form>
                       )}
-                    </Formik>
+                    </Formik> */}
                   </div>
                 </div>
               </div>
