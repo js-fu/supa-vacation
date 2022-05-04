@@ -23,7 +23,7 @@ const Card = ({
               src={image}
               alt={title}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
               className="hover:opacity-80 transition"
             />
           ) : null}

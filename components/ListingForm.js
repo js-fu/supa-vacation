@@ -26,7 +26,6 @@ const ListingForm = ({ initialValues = null, redirectPath = "", buttonText = "Su
   const upload = async (image) => {
     if (!image) return;
 
-    debugger
     let toastId;
     try {
       setDisabled(true);
@@ -58,6 +57,7 @@ const ListingForm = ({ initialValues = null, redirectPath = "", buttonText = "Su
         router.push(redirectPath);
       }
     } catch (e) {
+      console.error("handleOnSubmit", e);
       toast.error("Unable to submit", { id: toastId });
       setDisabled(false);
     }

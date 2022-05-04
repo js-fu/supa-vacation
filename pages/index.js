@@ -1,11 +1,6 @@
 import Layout from "@/components/Layout";
 import Grid from "@/components/Grid";
-// Import the generated Prisma client
-import { PrismaClient } from "@prisma/client";
-
-// Instantiate it
-const prisma = new PrismaClient();
-
+import { prisma } from '@/lib/prisma';
 // import homes from "data.json";
 
 export default function Home(props) {
